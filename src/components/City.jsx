@@ -4,12 +4,14 @@ import { Div, Text, Button } from "../assets/Theme";
 import { Link } from "react-router-dom";
 
 const City = () => {
-  const { city, temp } = useContext(WeatherContext);
+  const { loading, city, temp } = useContext(WeatherContext);
   const background = temp < 15 ? "blue" : "orange";
+
+  if (loading) return <Div>Loading...</Div>
 
   return (
     <>
-      {city ? (
+      {city.length ? (           
         <Div style={{ backgroundColor: background }}>
           <Text>
             Vous êtes à {city}, il fait {temp}°C.
